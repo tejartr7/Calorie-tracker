@@ -5,20 +5,25 @@ import { Button } from 'react-bootstrap';
 const List = ({ title }) => {
     const email = localStorage.getItem('mail');
     const [items, setItems] = useState([]);
-    const [cal, setCal] = useState(0);
-    const [pro, setPro] = useState(0);
+    const [totalcal, totalsetCal] = useState(0);
+    const [totalpro, totalsetPro] = useState(0);
     const [value, setValue] = useState(0);
     const fetchItems = async () => {
         try {
             const response = await fetch(`http://localhost:8000/items/${email}/${title}`);
             if (response.status === 200) {
                 const data = await response.json();
+
                 setItems(data);
-                if (value === 0) {
-                    setCal(prevCal => data.reduce((totalCal, item) => totalCal + item.cal, prevCal));
-                    setPro(prevPro => data.reduce((totalPro, item) => totalPro + item.proteins, prevPro));
-                }
-                setValue(value + 1);
+
+                // Calculate total calories and proteins
+                const cal = data.reduce((totalCal, item) => totalCal + item.cal, 0);
+                const pro = data.reduce((totalPro, item) => totalPro + item.proteins, 0);
+                // Update totalcal and totalpro
+                totalsetCal(cal);
+                totalsetPro(pro);
+
+                localStorage.setItem('value', value);
             } else {
                 console.error('Error fetching items:', response.statusText);
             }
@@ -26,7 +31,6 @@ const List = ({ title }) => {
             console.error('Error fetching items:', error.message);
         }
     };
-
     useEffect(() => {
         // Fetch items initially
         fetchItems();
@@ -36,7 +40,7 @@ const List = ({ title }) => {
 
         // Clear the interval when the component unmounts
         return () => clearInterval(intervalId);
-    }, [value]); // Empty dependency array ensures the effect runs only once on mount
+    }, [totalcal,totalpro]); // Empty dependency array ensures the effect runs only once on mount
 
     const handleDelete = async (itemName, itemGrams) => {
         try {
@@ -100,8 +104,8 @@ const List = ({ title }) => {
                     <tr>
                         <td className="fw-bold">Total</td>
                         <td></td>
-                        <td className="fw-bold">{cal}</td>
-                        <td className="fw-bold">{pro}</td>
+                        <td className="fw-bold">{parseFloat(totalcal)}</td>
+                        <td className="fw-bold">{parseFloat(totalpro)}</td>
                         <td></td>
                     </tr>
                 </tbody>

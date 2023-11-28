@@ -12,15 +12,13 @@ const calculateCaloriesAndProteins = (itemName, itemGrams) => {
         const cal = parseInt(itemGrams);
         const proteins = 0;
         return { cal, proteins };
-    }
-    else {
+    } else {
         // Calculate calories and proteins based on item info
         const cal = (itemGrams / 100) * calorieProteinInfo.calories;
         const proteins = (itemGrams / 100) * calorieProteinInfo.proteins;
         return { cal, proteins };
     }
 };
-
 addItem.post('/', async (req, res) => {
     try {
         const { email, title, itemName, itemGrams } = req.body;
@@ -42,13 +40,35 @@ addItem.post('/', async (req, res) => {
 
         // Add item to the appropriate meal category
         if (title === 'water' || title === 'breakfast' || title === 'lunch' || title === 'dinner' || title === 'snack1' || title === 'snack2') {
-            existingUser[title].push({ itemName, itemGrams, cal, proteins });
+            const temp = existingUser[title].find((item) => item.itemName === itemName);
+            console.log("temp is " + " " + temp);
+            if (temp === undefined) {
+                existingUser[title].push({ itemName, itemGrams, cal, proteins });
+            } else {
+                // Corrected the condition to check against itemName
+                existingUser[title].map((item) => {
+                    if (item.itemName === itemName) {
+                        console.log(itemName);
+                        item.itemGrams = (parseFloat(item.itemGrams) || 0) + parseFloat(itemGrams);
+                        item.cal = (parseFloat(item.cal) || 0) + parseFloat(cal);
+                        item.proteins = (parseFloat(item.proteins) || 0) + parseFloat(proteins);
+                        console.log(item);
+                    }
+                });
+            }
+
+            // Save the updated user document and fetch the latest version
+            const updatedUser = await UserItems.findOneAndUpdate(
+                { email },
+                existingUser,
+                { new: true, upsert: true }
+            );
+
+            console.log(updatedUser);  // Log the updated user to check for changes
+            return res.status(200).json({ message: 'Item added successfully', user: updatedUser });
         } else {
             return res.status(400).json({ message: 'Invalid title' });
         }
-
-        await existingUser.save();
-        return res.status(200).json({ message: 'Item added successfully', user: existingUser });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });

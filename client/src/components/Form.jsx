@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form as BootstrapForm, Button, Col, Container, Row } from 'react-bootstrap';
+import { Form as BootstrapForm, Button, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import List from './List';
@@ -87,7 +87,7 @@ const Form = ({ title, token }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [suggestions, setSuggestions] = useState([]);
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
 
   const placeholder = title === 'Water' ? 'Add items in ml' : 'Enter item in grams';
 
@@ -129,18 +129,20 @@ const Form = ({ title, token }) => {
         itemName: itemName.toLowerCase(),
         itemGrams: itemGrams,
       });
-
+      localStorage.setItem('value', 0);
       if (response.status === 200) {
+        //localStorage.setItem('value',0);
+        //console.log(localStorage.getItem('value'));
         enqueueSnackbar('Item added successfully', {
           variant: 'success',
-          autoHideDuration: 5000,
+          autoHideDuration: 2000,
           anchorOrigin: {
             vertical: 'bottom',
             horizontal: 'center',
           },
-          /* onClose: () => {
-             window.location.reload();
-           },*/
+         /* onClose: () => {
+            window.location.reload();
+          },*/
         });
       } else alert('Error adding item');
     } catch (error) {
