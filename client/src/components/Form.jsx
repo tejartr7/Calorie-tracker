@@ -84,6 +84,7 @@ const Form = ({ title, token }) => {
 
   const [itemName, setItemName] = useState('');
   const [itemGrams, setItemGrams] = useState('');
+  const [itemProteins, setItemProteins] = useState(''); //added by me
   const { enqueueSnackbar } = useSnackbar();
 
   const [suggestions, setSuggestions] = useState([]);
@@ -128,6 +129,7 @@ const Form = ({ title, token }) => {
         title: title.toLowerCase(),
         itemName: itemName.toLowerCase(),
         itemGrams: itemGrams,
+        itemProteins: itemProteins,
       });
       localStorage.setItem('value', 0);
       if (response.status === 200) {
@@ -140,9 +142,9 @@ const Form = ({ title, token }) => {
             vertical: 'bottom',
             horizontal: 'center',
           },
-         /* onClose: () => {
-            window.location.reload();
-          },*/
+          /* onClose: () => {
+             window.location.reload();
+           },*/
         });
       } else alert('Error adding item');
     } catch (error) {
@@ -150,6 +152,7 @@ const Form = ({ title, token }) => {
     }
     setItemName('');
     setItemGrams('');
+    setItemProteins('');
   };
 
   return (
@@ -162,7 +165,7 @@ const Form = ({ title, token }) => {
         </Col>
       </Row>
       <Row className="mb-3">
-        <Col md={5} className="text-center">
+        <Col md={4} className="text-center">
           <BootstrapForm.Label className="size-4 fw-bold">Item Name:</BootstrapForm.Label>
 
           <Autosuggest
@@ -184,7 +187,7 @@ const Form = ({ title, token }) => {
             }}
           />
         </Col>
-        <Col md={5} className="text-center">
+        <Col md={4} className="text-center">
           <BootstrapForm.Label className="size-4 fw-bold">Item in Grams/Calories:</BootstrapForm.Label>
           <BootstrapForm.Control
             type="text"
@@ -194,7 +197,17 @@ const Form = ({ title, token }) => {
             onChange={(e) => setItemGrams(e.target.value)}
           />
         </Col>
-        <Col md={2} className="d-flex align-items-center justify-content-center mt-4">
+        <Col md={4} className="text-center">
+          <BootstrapForm.Label className="size-4 fw-bold">Proteins(g)</BootstrapForm.Label>
+          <BootstrapForm.Control
+            type="text"
+            placeholder="Enter proteins in grams"
+            value={itemProteins}
+            className="form-control fw-bold"
+            onChange={(e) => setItemProteins(e.target.value)}
+          />
+        </Col>
+        <Col md={12} className="d-flex align-items-center justify-content-center mt-4">
           <Button variant="primary" onClick={handleAdd} className="bg-black text-white">
             Add
           </Button>

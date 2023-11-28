@@ -18,43 +18,58 @@ function App() {
         const time = moment().tz('Asia/Kolkata');
         const t = time.format('HH:mm:ss');
         const s = t.split(":");
-        // if (s[0]=="24" && s[1]=="00" && s[2]=="00") {
-        if (s[0] === "1000"){
+        if (s[0] === "24" && s[1] === "00" && s[2] === "00") {
           const email = localStorage.getItem('mail');
           console.log(email);
-        const response = await axios.get('http://localhost:8000/sendmail', {
-          params: {
-            email: email,
-          },
-        });
+          try {
+            const response = await axios.post('http://localhost:8000/reset', {
+              params: {
+                email: email,
+              },
+            });
+            if (response.status === 200) {
+              console.log("reset successful");
+            }
+            else if (response.status === 404) {
+              console.log("reset was not successfull")
+            }
+          }
+          catch {
+            console.log("error")
+          }
+          const response = await axios.get('http://localhost:8000/sendmail', {
+            params: {
+              email: email,
+            },
+          });
 
-        console.log(response);
-      }
+          console.log(response);
+        }
       } catch (error) {
-      console.error('Error in fetchData:', error);
-    }
-  };
+        console.error('Error in fetchData:', error);
+      }
+    };
 
-  // Run fetchData every second
-   const intervalId = setInterval(fetchData, 1000);
+    // Run fetchData every second
+    const intervalId = setInterval(fetchData, 1000);
 
-  // Cleanup the interval on component unmount
-  return () => clearInterval(intervalId);
-}, []);  // Empty dependency array to ensure useEffect runs only once on mount
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);  // Empty dependency array to ensure useEffect runs only once on mount
 
-return (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/tracker" element={<Tracker />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Register />} />
-      <Route path="/chart" element={<Chart />} />
-    </Routes>
-  </BrowserRouter>
-);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tracker" element={<Tracker />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/chart" element={<Chart />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

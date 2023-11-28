@@ -47,7 +47,7 @@ function generateEmailContent(userItems) {
 
   return `
     <h1>Hello there</h1>
-    <p>Thanks for subscribing to our newsletter</p>
+    <p>This is your today calorie report</p>
 
     <!-- Breakfast Table -->
     <h2>Breakfast</h2>
@@ -157,7 +157,7 @@ mailRouter.get("/", async (req, res) => {
     const info = await transporter.sendMail({
       from: '"Track Calories" <sai707nenupavan@gmail.com>',
       to: 'codworldrtr7@gmail.com',
-      subject: "Your calorie report for yesterday",
+      subject: "Your calorie report for today",
       html: htmlContent,
     });
 
