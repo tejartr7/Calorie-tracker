@@ -9,6 +9,15 @@ body {
   ;
 }
 
+body,
+.suggestions-container,
+.suggestion,
+.suggestion-highlighted,
+canvas,
+.list-container {
+  font-family: 'Manrope', sans-serif;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

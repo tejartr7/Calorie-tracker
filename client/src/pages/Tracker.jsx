@@ -3,11 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Card } from 'react-bootstrap';
 import Form from '../components/Form';
 import Header from '../components/Header';
-import List from '../components/List';
 
 const Tracker = () => {
     const token = localStorage.getItem('token');
-    const mail=localStorage.getItem('email');
     const sectionData = [
         { title: 'Breakfast' },
         { title: 'Lunch' },

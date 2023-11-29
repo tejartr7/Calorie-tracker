@@ -1,6 +1,16 @@
-body{
+body,
+.suggestions-container,
+.suggestion,
+.suggestion-highlighted,
+canvas,
+.list-container {
+  font-family: 'Manrope', sans-serif;
+}
+
+body {
   background-color: #fffcf6;
 }
+
 /* In your component's CSS file or a separate CSS file */
 .suggestions-container {
   position: absolute;
@@ -22,7 +32,8 @@ body{
 .suggestion-highlighted {
   background-color: #f0f0f0;
 }
-canvas{
+
+canvas {
   max-width: 350px;
   max-height: 350px;
   align-items: center;
@@ -32,6 +43,8 @@ canvas{
 
 
 .list-container {
-  max-width: 600px; /* Adjust the max-width as needed */
-  margin: 0 auto; /* Center the list horizontally */
+  max-width: 600px;
+  /* Adjust the max-width as needed */
+  margin: 0 auto;
+  /* Center the list horizontally */
 }

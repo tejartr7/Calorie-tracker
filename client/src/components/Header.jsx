@@ -8,7 +8,7 @@ function Header() {
     const location = useLocation(); // Get the current location
     const handleLogout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('email');
+        localStorage.removeItem('mail');
         window.location.reload();
     };
     useEffect(() => {

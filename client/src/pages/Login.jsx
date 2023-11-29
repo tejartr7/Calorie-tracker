@@ -19,6 +19,7 @@ const Login = () => {
      // console.log(response);
       if (response.status === 200) {
         localStorage.setItem('mail',formData.email);
+        console.log("Login successful");
         navigate('/tracker');
       }
     } catch (error) {
