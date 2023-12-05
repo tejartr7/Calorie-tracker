@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink, useLocation } from 'react-router-dom';
+import '../index.css'
+
 function Header() {
     const [expanded, setExpanded] = useState(false);
     const [small, setSmall] = useState(false);
@@ -36,7 +38,10 @@ function Header() {
     return (
         <Navbar collapseOnSelect expand="lg" bg="" variant="light">
             <Container className='fw-bold'>
-                <Navbar.Brand href="/">Brand name</Navbar.Brand>
+                <Navbar.Brand as={NavLink} to="/" exact>
+                    Brand name
+                </Navbar.Brand>
+
                 {small ? <Button className="bg-black text-white" onClick={handleLogout}>Logout</Button> : null}
                 <Navbar.Toggle
                     aria-controls="responsive-navbar-nav"

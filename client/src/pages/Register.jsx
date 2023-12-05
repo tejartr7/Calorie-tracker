@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 const Register = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -14,17 +15,22 @@ const Register = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-   // console.log('Form submitted');
+    // console.log('Form submitted');
 
     try {
       const response = await axios.post('http://localhost:8000/register', formData);
       //console.log(response);
-      if (response.status ===201) {
-        
-        return navigate("/login");
+      if (response.status === 201) {
+        enqueueSnackbar('Registration successful', { variant: 'success' });
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      } else {
+        enqueueSnackbar(response.message, { variant: 'error' });
       }
       // Handle the response from the server as needed
     } catch (error) {
+      enqueueSnackbar('Registration unsuccessful', { variant: 'error' });
       console.error('Error submitting the form:', error);
       // Handle the error appropriately
     }

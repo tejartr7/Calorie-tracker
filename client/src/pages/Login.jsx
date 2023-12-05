@@ -2,28 +2,38 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, redirect } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (formData.email === '' || formData.password === '') {
+        enqueueSnackbar('Please fill all the fields', { variant: 'error' });
+        return;
+      }
       const response = await axios.get('http://localhost:8000/login', { params: formData });
-     // console.log(response);
+      // console.log(response);
       if (response.status === 200) {
-        localStorage.setItem('mail',formData.email);
+        localStorage.setItem('mail', formData.email);
         console.log("Login successful");
-        navigate('/tracker');
+        enqueueSnackbar('Login successful', { variant: 'success' });
+        setTimeout(() => { }, 2000);
+        window.location.href = '/';
       }
     } catch (error) {
       console.error(error);
+      enqueueSnackbar('Invalid credentials', { variant: 'error' });
     }
   };
 
