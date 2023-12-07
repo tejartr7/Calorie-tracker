@@ -1,29 +1,54 @@
-import React from 'react'
+import React from 'react';
 import Header from '../components/Header';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import { Row, Col } from 'react-bootstrap';
+import Footer from '../components/Footer';
 
 const Home = () => {
   return (
     <div>
       <Header />
-      <Row className="mt-5 mb-5 ms-2 align-items-center">
-        {/* First Column */}
-        <Col md={4} sm={10} className="text-left logo-container">
-          <h1 className='fw-bold'>Calorie Tracker</h1>
-          <p>Smart Eating, Wise Tracking</p>
-        </Col>
+      <div className="container py-5">
+        <div className="row mb-4 align-items-center flex-lg-row-reverse">
+          <div className="col-md-6 col-xl-7 mb-4 mb-lg-0 order-md-1 order-xl-0">
+            <div className="lc-block position-relative d-flex justify-content-center align-items-center">
+              <img
+                className="img-fluid rounded shadow"
+                src="https://th.bing.com/th/id/OIG.CjNZ3hWxe4SKgMmzR.YR?pid=ImgGn"
+                sizes="(max-width: 840px) 100vw, 840px"
+                width="500"
+                height=""
+                alt="Dev group working"  // Add alt attribute for accessibility
+              />
+            </div>
+          </div>
 
-        {/* Second Column */}
-        <Col md={6} sm={10} className="ms-3 video-container">
-          {/* Video/image goes here */}
-          <img src="your-image-url" alt="Your Image" style={{ width: '100%' }} />
-        </Col>
-      </Row>
-      <div>Part2</div>
-      <h1>What are you waiting for!!</h1>
-      <div className="text-center text-sm-left text-md-left text-lg-left">Contact page</div>
+          <div className="hero-text text-left col-md-6 col-xl-5 order-md-0 order-xl-1">
+            <div className="lc-block mb-3">
+              <div editable="rich">
+                <h3 className="fw-bold display-2">Smart Eating.</h3>
+                <h3 className="fw-bold display-2">Wise Tracking.</h3>
+              </div>
+            </div>
+
+            <div className="lc-block mb-4">
+              <div editable="rich">
+                <p className="lead">
+                  We help you in your fitness by tracking your calories
+                </p>
+              </div>
+            </div>
+            <div className="lc-block">
+              <Link className="btn btn-lg btn-success" to="/tracker" role="button">
+                Get it now-for Free
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
-  )
+  );
 }
 
 export default Home;

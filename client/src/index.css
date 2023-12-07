@@ -81,19 +81,61 @@ code {
   font-weight: bold;
 }
 
-.logo-container {
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  padding: 0;
+.hero-text {
+  font-family: 'Manrope', sans-serif !important;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.tracker-text {
+  font-family: 'Manrope', sans-serif !important;
+  font-weight: bolder;
+  font-size: 4rem;
+  text-align: left;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.common-input {
+  margin: 20px 80px 20px 80px;
+}
+
+.chart-box {
+  margin: 20px 100px 20px 100px;
 }
 
 @media screen and (max-width: 600px) {
-  .logo-container {
-    justify-content: center;
-    align-items: center;
+  .hero-text {
+    font-size: 1.5rem;
     text-align: center;
-    margin-bottom: 50px;
-    margin-top: 50px;
+  }
+
+  .tracker-text {
+    font-family: 'Manrope', sans-serif !important;
+    font-weight: bolder;
+    font-size: 2rem;
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .common-input {
+    margin: 10px 5px 10px 5px;
+  }
+
+  canvas {
+    max-width: 200px;
+    max-height: 200px;
+    align-items: center;
+    margin: auto;
+    padding: 0;
+  }
+
+  .chart-box {
+    margin: 10px 5px 10px 5px;
   }
 }
+

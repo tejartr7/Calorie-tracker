@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import { Form as Col, Card, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Chartview from '../components/Chartview';
+import Footer from '../components/Footer';
 
 const Chart = () => {
     const token = localStorage.getItem('token');
@@ -13,19 +14,17 @@ const Chart = () => {
         { title: 'Lunch' },
         { title: 'Dinner' },
         { title: 'Snack1' },
-        { title: 'Snack2' },
-        { title: 'Water' },
     ];
 
     return (
         <div>
             <Header />
-            <div className="text-center">
+            <div className="chart-box">
                 <h1 className="text-center">Calorie tracker</h1>
-                <Row xs={1} md={2} lg={3} className="g-4">
+                <Row xs={1} md={2} lg={2} className="chart-view m-4" >
                     {sectionData.map((section) => (
-                        <Col key={section.title} className="mb-3">
-                            <Card className="h-60">
+                        <Col key={section.title} className={`mb-${window.innerWidth < 600 ? 2: 6}`}>
+                            <Card className="h-60" style={{ margin: '10px' }}>
                                 <Card.Header className='fw-bold'>{section.title}</Card.Header>
                                 <Card.Body>
                                     <div className="chart-container">
@@ -37,6 +36,7 @@ const Chart = () => {
                     ))}
                 </Row>
             </div>
+            <Footer/>
         </div>
     );
 }

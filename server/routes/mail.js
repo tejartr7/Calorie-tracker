@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import UserItems from "../database/userItems.js";
 import User from "../database/user.js";
 
+
 dotenv.config({ path: '../.env' });
 
 const mailRouter = express();
@@ -124,6 +125,8 @@ function generateEmailContent(userItems) {
 }
 
 mailRouter.get("/", async (req, res) => {
+  const mail=process.env.user;
+  
   try {
     // Retrieve email data from the request body
     const{ email }= req.query;
@@ -148,14 +151,14 @@ mailRouter.get("/", async (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        user: "sai707nenupavan@gmail.com",
+        user: mail,
         pass: process.env.PASS,
       },
     });
-
+    
     // Send the email
     const info = await transporter.sendMail({
-      from: '"Track Calories" <sai707nenupavan@gmail.com>',
+      from: `"Track Calories" <${mail}>`,
       to: 'codworldrtr7@gmail.com',
       subject: "Your calorie report for today",
       html: htmlContent,

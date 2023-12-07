@@ -30,7 +30,7 @@ function App() {
         const time = moment().tz('Asia/Kolkata');
         const t = time.format('HH:mm:ss');
         const s = t.split(":");
-
+        //console.log(s);
         if (s[0] === "24" && s[1] === "00" && s[2] === "00") {
           const resetResponse = await axios.post('http://localhost:8000/reset', {
             params: {

@@ -28,18 +28,20 @@ const Chartview = ({ title }) => {
                         {
                             data: [totalProteins, totalCalories],
                             backgroundColor: ['#F4CE14', '#45474B'],
-                            // hoverBackgroundColor: ['#1640D6', '#1640D6'],
-                            radius: 150,
                         },
                     ],
                 });
-                console.log(chartData.datasets[0].data);
             } else {
                 console.error('Error fetching items:', response.statusText);
             }
         } catch (error) {
             console.error('Error fetching items:', error.message);
         }
+    };
+
+    const getRadius = () => {
+        // Adjust radius based on screen width
+        return window.innerWidth < 600 ? 100 : 150;
     };
 
     return (
@@ -56,7 +58,7 @@ const Chartview = ({ title }) => {
                                 },
                             },
                             legend: {
-                                display: false, // Optionally, you can hide the legend if not needed
+                                display: false,
                             },
                         },
                         layout: {
@@ -65,10 +67,10 @@ const Chartview = ({ title }) => {
                         },
                         elements: {
                             arc: {
-                                borderWidth: 0, // Optionally, you can remove the border of the arc elements
+                                borderWidth: 0,
+                                radius: getRadius(),
                             },
                         },
-                        height: 40,
                     }}
                 />
             ) : (
@@ -77,4 +79,5 @@ const Chartview = ({ title }) => {
         </div>
     );
 };
+
 export default Chartview;

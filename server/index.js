@@ -11,6 +11,8 @@ import items from "./routes/items.js"
 import deleteItem from "./routes/deleteItem.js";
 import mail from "./routes/mail.js";
 import reset from "./routes/reset.js";
+import contactRouter from "./routes/contact.js";
+
 
 
 const app = express();
@@ -30,6 +32,7 @@ app.use("/add", addItem);
 app.use("/items", items);
 app.use("/delete", deleteItem);
 app.use("/reset", reset);
+app.use("/contact", contactRouter);
 app.listen(8000, () => {
     connectDB(process.env.MONGODB_URL);
     console.log('Server is running on port 8000');

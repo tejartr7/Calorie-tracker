@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Card } from 'react-bootstrap';
 import Form from '../components/Form';
 import Header from '../components/Header';
+import CommonInput from '../components/CommonInput';
+import Footer from '../components/Footer';
 
 const Tracker = () => {
     const token = localStorage.getItem('token');
@@ -19,11 +21,12 @@ const Tracker = () => {
         <div>
             <Header />
             <div className="text-center">
-                <h1 className="text-center">Calorie tracker</h1>
-                <Row>
+                <h1 className="tracker-text text-center "><u>Calorie tracker</u></h1>
+                <CommonInput />
+                <Row className="justify-content-around">
                     {sectionData.map((section, index) => (
-                        <Col md={6} sm={12} key={index}>
-                            <Card className="m-2"> {/* Add margin and padding here */}
+                        <Col className='m-4' md={5} sm={11} key={index}>
+                            <Card className="m-1" style={{ borderRadius: '25px' }}>
                                 <Card.Header className='fw-bold'>{section.title}</Card.Header>
                                 <Card.Body>
                                     <Form title={section.title} token={token} />
@@ -32,6 +35,9 @@ const Tracker = () => {
                         </Col>
                     ))}
                 </Row>
+            </div>
+            <div className="mb-4"> {/* Add margin-bottom to create space between the last row and the footer */}
+                <Footer />
             </div>
         </div>
     );

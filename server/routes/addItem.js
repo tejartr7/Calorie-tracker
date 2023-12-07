@@ -7,30 +7,19 @@ const addItem = express.Router();
 const calculateCaloriesAndProteins = (itemName, itemGrams, itemProteins) => {
     const calorieProteinInfo = calorieProteinMap.get(itemName.toLowerCase());
 
-    if (itemProteins !== undefined) {
-        // If itemProteins is defined, use its value
-        const proteins = (itemGrams / 100) * itemProteins;
-
-        if (calorieProteinInfo != null) {
-            const cal = (itemGrams / 100) * calorieProteinInfo.calories;
-            return { cal, proteins };
-        } else {
-            const cal = itemGrams;
-            return { cal, proteins };
-        }
-    } else {
-        if (!calorieProteinInfo) {
-            // Item not found, set calories as itemGrams and proteins as 0
-            const cal = parseInt(itemGrams);
-            const proteins = 0;
-            return { cal, proteins };
-        } else {
-            // Calculate calories and proteins based on item info
-            const cal = (itemGrams / 100) * calorieProteinInfo.calories;
-            const proteins = (itemGrams / 100) * calorieProteinInfo.proteins;
-            return { cal, proteins };
-        }
+    // Check if the item exists in the map
+    if (!calorieProteinInfo) {
+        // Item not found, set calories as itemGrams and proteins as 0
+        const cal = parseInt(itemGrams);
+        const proteins = 0;
+        return { cal, proteins };
     }
+
+    // If itemProteins is defined, use its value; otherwise, use the value from the map
+    const proteins = (itemProteins>0)  ? parseInt(itemProteins) : itemGrams/100*calorieProteinInfo.proteins;
+    const cal = (itemGrams / 100) * calorieProteinInfo.calories;
+
+    return { cal, proteins };
 };
 
 addItem.post('/', async (req, res) => {
@@ -54,7 +43,7 @@ addItem.post('/', async (req, res) => {
         // Add item to the appropriate meal category
         if (title === 'water' || title === 'breakfast' || title === 'lunch' || title === 'dinner' || title === 'snack1' || title === 'snack2') {
             const temp = existingUser[title].find((item) => item.itemName === itemName);
-            console.log("temp is " + " " + temp);
+            //console.log("temp is " + " " + temp);
             if (temp === undefined) {
                 existingUser[title].push({ itemName, itemGrams, cal, proteins });
             } else {

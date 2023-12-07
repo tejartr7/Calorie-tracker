@@ -123,7 +123,10 @@ const Form = ({ title, token }) => {
       if (itemName === '' || itemGrams === '') {
         return alert('Please fill all the fields');
       }
-      console.log(`Item added to ${title}: ${itemName}, ${itemGrams} grams`);
+      //console.log(`Item added to ${title}: ${itemName}, ${itemGrams} grams , ${itemProteins} proteins`);
+      if (itemProteins === '') {
+        setItemProteins('');
+      }
       const response = await axios.post('http://localhost:8000/add', {
         email: mail,
         title: title.toLowerCase(),
@@ -131,10 +134,10 @@ const Form = ({ title, token }) => {
         itemGrams: itemGrams,
         itemProteins: itemProteins,
       });
-      localStorage.setItem('value', 0);
+
       if (response.status === 200) {
         //localStorage.setItem('value',0);
-        //console.log(localStorage.getItem('value'));
+
         enqueueSnackbar('Item added successfully', {
           variant: 'success',
           autoHideDuration: 2000,
@@ -156,63 +159,7 @@ const Form = ({ title, token }) => {
   };
 
   return (
-    <BootstrapForm>
-      <Row>
-        <Col md={12} className="text-center">
-          <BootstrapForm.Label className="fw-bold mb-3" size="4">
-            Log an item to {title}:
-          </BootstrapForm.Label>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col md={4} className="text-center">
-          <BootstrapForm.Label className="size-4 fw-bold">Item Name:</BootstrapForm.Label>
-
-          <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={onSuggestionsClearRequested}
-            getSuggestionValue={getSuggestionValue}
-            renderSuggestion={renderSuggestion}
-            inputProps={{
-              placeholder: 'Enter item name',
-              value: itemName,
-              onChange: (event, { newValue }) => setItemName(newValue),
-              className: 'form-control fw-bold',
-            }}
-            theme={{
-              container: 'autosuggest-container',
-              suggestionsContainer: 'suggestions-container',
-              suggestionsList: 'suggestions-list',
-            }}
-          />
-        </Col>
-        <Col md={4} className="text-center">
-          <BootstrapForm.Label className="size-4 fw-bold">Item in Grams/Calories:</BootstrapForm.Label>
-          <BootstrapForm.Control
-            type="text"
-            placeholder={placeholder}
-            value={itemGrams}
-            className="form-control fw-bold"
-            onChange={(e) => setItemGrams(e.target.value)}
-          />
-        </Col>
-        <Col md={4} className="text-center">
-          <BootstrapForm.Label className="size-4 fw-bold">Proteins(g)</BootstrapForm.Label>
-          <BootstrapForm.Control
-            type="text"
-            placeholder="Enter proteins in grams"
-            value={itemProteins}
-            className="form-control fw-bold"
-            onChange={(e) => setItemProteins(e.target.value)}
-          />
-        </Col>
-        <Col md={12} className="d-flex align-items-center justify-content-center mt-4">
-          <Button variant="primary" onClick={handleAdd} className="bg-black text-white">
-            Add
-          </Button>
-        </Col>
-      </Row>
+    <BootstrapForm className='ms-1'>
       <Row>
         <List title={title} />
       </Row>

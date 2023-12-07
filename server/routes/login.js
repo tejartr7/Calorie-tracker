@@ -9,12 +9,12 @@ login.get('/', async (req, res) => {
        // console.log(req.email);
         // Check if a user with the provided email exists
         const existingUser = await User.findOne({ email });
-
+        console.log(email);
         if (!existingUser) {
             console.log("User with this email does not exist");
             return res.status(404).json({ message: 'User with this email does not exist' });
         }
-
+        
         // Compare the provided password with the stored password
         if (bcrypt.compareSync(password, existingUser.password) === false) {
             console.log("Incorrect password");

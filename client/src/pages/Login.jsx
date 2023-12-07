@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { useNavigate, redirect } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-
-
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +9,6 @@ const Login = () => {
     password: '',
   });
   const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -23,12 +17,10 @@ const Login = () => {
         return;
       }
       const response = await axios.get('http://localhost:8000/login', { params: formData });
-      // console.log(response);
       if (response.status === 200) {
         localStorage.setItem('mail', formData.email);
         console.log("Login successful");
         enqueueSnackbar('Login successful', { variant: 'success' });
-        setTimeout(() => { }, 2000);
         window.location.href = '/';
       }
     } catch (error) {
