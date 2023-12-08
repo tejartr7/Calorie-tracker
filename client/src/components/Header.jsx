@@ -36,7 +36,7 @@ function Header() {
     }, []);
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="" variant="light">
+        <Navbar collapseOnSelect expand="lg" bg="" variant="light" style={{borderBottom:'1px solid black'}}>
             <Container className='fw-bold'>
                 <Navbar.Brand as={NavLink} to="/" exact>
                     Brand name

@@ -107,6 +107,26 @@ code {
   margin: 20px 100px 20px 100px;
 }
 
+@keyframes blink-border {
+  from {
+    border-color: black;
+  }
+
+  to {
+    border-color: transparent;
+  }
+}
+
+@keyframes run-border {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 0;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .hero-text {
     font-size: 1.5rem;
@@ -138,4 +158,3 @@ code {
     margin: 10px 5px 10px 5px;
   }
 }
-

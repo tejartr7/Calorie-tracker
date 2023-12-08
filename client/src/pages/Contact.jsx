@@ -103,7 +103,7 @@ const Contact = () => {
           </form>
         </div>
 
-        <div style={{ maxWidth: '500px', width: '90%', padding: '20px', border: '2px solid black', borderRadius: '10px', marginLeft: '20px' }} className='text-center'>
+        <div style={{ maxWidth: '500px', width: '90%', padding: '20px', borderRadius: '10px', marginLeft: '20px' }} className='text-center'>
           <h1 className='text-center mb-4'>Other ways to contact</h1>
           <div className="mb-3 row">
             <div className="col">

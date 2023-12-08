@@ -5,6 +5,7 @@ import Form from '../components/Form';
 import Header from '../components/Header';
 import CommonInput from '../components/CommonInput';
 import Footer from '../components/Footer';
+import WaterComp from '../components/WaterComp';
 
 const Tracker = () => {
     const token = localStorage.getItem('token');
@@ -12,9 +13,7 @@ const Tracker = () => {
         { title: 'Breakfast' },
         { title: 'Lunch' },
         { title: 'Dinner' },
-        { title: 'Snack1' },
-        { title: 'Snack2' },
-        { title: 'Water' },
+        { title: 'Snack' },
     ];
 
     return (
@@ -26,7 +25,7 @@ const Tracker = () => {
                 <Row className="justify-content-around">
                     {sectionData.map((section, index) => (
                         <Col className='m-4' md={5} sm={11} key={index}>
-                            <Card className="m-1" style={{ borderRadius: '25px' }}>
+                            <Card className="m-1" style={{ borderRadius: '25px', border: '2px solid black' }}>
                                 <Card.Header className='fw-bold'>{section.title}</Card.Header>
                                 <Card.Body>
                                     <Form title={section.title} token={token} />

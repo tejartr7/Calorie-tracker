@@ -17,14 +17,14 @@ const Chart = () => {
     ];
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
-            <div className="chart-box">
-                <h1 className="text-center">Calorie tracker</h1>
-                <Row xs={1} md={2} lg={2} className="chart-view m-4" >
+            <div className="chart-box" style={{ flex: 1 }}>
+                <h1 className="tracker-text text-center "><u>Calorie tracker</u></h1>
+                <Row xs={1} md={2} lg={2} className="text-center chart-view m-4" >
                     {sectionData.map((section) => (
-                        <Col key={section.title} className={`mb-${window.innerWidth < 600 ? 2: 6}`}>
-                            <Card className="h-60" style={{ margin: '10px' }}>
+                        <Col key={section.title} className={`mb-${window.innerWidth < 600 ? 2 : 6}`}>
+                            <Card className="h-60" style={{ margin: '10px', border: '2px solid black' }}>
                                 <Card.Header className='fw-bold'>{section.title}</Card.Header>
                                 <Card.Body>
                                     <div className="chart-container">
@@ -36,7 +36,9 @@ const Chart = () => {
                     ))}
                 </Row>
             </div>
-            <Footer/>
+            <div className="mb-4">
+                <Footer />
+            </div>
         </div>
     );
 }

@@ -7,7 +7,7 @@ const List = ({ title }) => {
     const [items, setItems] = useState([]);
     const [totalcal, totalsetCal] = useState(0);
     const [totalpro, totalsetPro] = useState(0);
-    const [value, setValue] = useState(0);
+   
     const fetchItems = async () => {
         try {
             const response = await fetch(`http://localhost:8000/items/${email}/${title}`);
@@ -22,8 +22,6 @@ const List = ({ title }) => {
                 // Update totalcal and totalpro
                 totalsetCal(cal);
                 totalsetPro(pro);
-
-                localStorage.setItem('value', value);
             } else {
                 console.error('Error fetching items:', response.statusText);
             }
