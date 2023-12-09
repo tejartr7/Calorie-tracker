@@ -3,7 +3,7 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink, useLocation } from 'react-router-dom';
 import '../index.css'
-
+import {logo} from '../images/index.js';
 function Header() {
     const [expanded, setExpanded] = useState(false);
     const [small, setSmall] = useState(false);
@@ -36,12 +36,11 @@ function Header() {
     }, []);
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="" variant="light" style={{borderBottom:'1px solid black'}}>
+        <Navbar collapseOnSelect expand="lg" bg="" variant="light" style={{ borderBottom: '1px solid black' }}>
             <Container className='fw-bold'>
                 <Navbar.Brand as={NavLink} to="/" exact>
-                    Brand name
+                    <img src={logo} alt='brand-name' className='header-logo' />
                 </Navbar.Brand>
-
                 {small ? <Button className="bg-black text-white" onClick={handleLogout}>Logout</Button> : null}
                 <Navbar.Toggle
                     aria-controls="responsive-navbar-nav"

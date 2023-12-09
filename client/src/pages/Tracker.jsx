@@ -17,10 +17,10 @@ const Tracker = () => {
     ];
 
     return (
-        <div>
+        <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
             <Header />
-            <div className="text-center">
-                <h1 className="tracker-text text-center "><u>Calorie tracker</u></h1>
+            <div className="flex-grow-1 text-center">
+                <h1 className="tracker-text text-center"><u>Calorie tracker</u></h1>
                 <CommonInput />
                 <Row className="justify-content-around">
                     {sectionData.map((section, index) => (
@@ -35,7 +35,7 @@ const Tracker = () => {
                     ))}
                 </Row>
             </div>
-            <div className="mb-4"> {/* Add margin-bottom to create space between the last row and the footer */}
+            <div className="m-4"> {/* Add margin-bottom to create space between the last row and the footer */}
                 <Footer />
             </div>
         </div>

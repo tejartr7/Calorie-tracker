@@ -13,7 +13,7 @@ const Chart = () => {
         { title: 'Breakfast' },
         { title: 'Lunch' },
         { title: 'Dinner' },
-        { title: 'Snack1' },
+        { title: 'Snack' },
     ];
 
     return (

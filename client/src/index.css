@@ -107,6 +107,12 @@ code {
   margin: 20px 100px 20px 100px;
 }
 
+.header-logo {
+  max-height: 50px;
+  /* Adjust the value to your desired height */
+  max-width: 100%;
+}
+
 @keyframes blink-border {
   from {
     border-color: black;

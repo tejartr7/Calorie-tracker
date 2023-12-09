@@ -8,10 +8,9 @@ const userSchema = new mongoose.Schema({
   breakfast: [],
   lunch: [],
   dinner: [],
-  snack1: [],
-  snack2: [],
+  snack: [],
   water: [],
 });
 
-const UserItems= mongoose.model('UserItems', userSchema);
+const UserItems = mongoose.model('UserItems', userSchema);
 export default UserItems;
