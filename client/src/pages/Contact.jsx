@@ -98,7 +98,7 @@ const Contact = () => {
               ></textarea>
             </div>
             <div className="d-flex justify-content-center align-items-center">
-              <button type="submit" className="btn btn-lg" style={{ backgroundColor: '#005c5c'}}>
+              <button type="submit" className="btn btn-lg" style={{ backgroundColor: '#005c5c',color:'white'}}>
                 Send
               </button>
             </div>
