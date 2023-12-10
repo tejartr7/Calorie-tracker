@@ -61,6 +61,7 @@ const Contact = () => {
                   name="name"
                   value={formData.first_name}
                   onChange={handleChange}
+                  placeholder="Enter Your Name"
                   style={{ border: '1px solid black' }}
                 />
               </div>
@@ -92,6 +93,7 @@ const Contact = () => {
                 required
                 value={formData.message}
                 onChange={handleChange}
+                placeholder="Enter Your Message"
                 style={{ border: '1px solid black' }}
               ></textarea>
             </div>
