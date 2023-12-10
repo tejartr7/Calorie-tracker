@@ -47,7 +47,7 @@ const Contact = () => {
       <Header />
       <div className="fw-bold contact-container d-flex justify-content-center align-items-center vh-75 m-5" style={{ margin: '20px' }}>
         <div style={{ maxWidth: '500px', width: '90%', padding: '20px', border: '2px solid black', borderRadius: '10px' }}>
-          <h1 className='text-center mb-4'>Contact Form</h1>
+          <h1 className='text-center mb-4'>Contact Us</h1>
           <form id="contact_form" name="contact_form" onSubmit={handleSubmit}>
             <div className="mb-3 row">
               <div className="col">
