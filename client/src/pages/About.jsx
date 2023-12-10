@@ -12,7 +12,7 @@ const About = () => {
           <p className='text-center'>
             Welcome to this calorie tracker website, crafted by RTR—a skilled full-stack web developer and freelancer. In the hustle of our daily lives, managing calorie intake is vital for a healthy lifestyle. This platform reflects my passion for web development and commitment to a user-friendly experience. Empowering you with tools for informed nutritional choices is my primary goal. Explore this space where technology meets wellness, and every click brings you closer to a healthier you. If you desire a similar website, feel free to <a href="mailto:codworldrtr7@gmail.com" style={{color:'black'}}>contact me</a>.
           </p>
-          <p className='text-center' style={{ color: 'red' }}><u>Note:</u>The calculations in this website are not accurate; there might be a variation of +10% or -10% depending on the way the item was made, so if the calorie count is too high don't worry!!</p>
+          <p className='text-center' style={{ color: 'red' }}><u>Note:</u>The webiste is not 100% accurate, so if the calorie count is too high don't worry!!</p>
         </div>
       </div>
       <Footer />
