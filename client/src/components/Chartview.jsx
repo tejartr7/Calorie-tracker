@@ -15,7 +15,7 @@ const Chartview = ({ title }) => {
 
     const fetchItems = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/items/${email}/${title}`);
+            const response = await axios.get(`https://calorie-tracker-backend-cwwr.onrender.com/items/${email}/${title}`);
             if (response.status === 200) {
                 const data = response.data;
 

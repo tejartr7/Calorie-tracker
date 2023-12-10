@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form as BootstrapForm, Button, Col, Row } from 'react-bootstrap';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
-import WaterComp from './WaterComp';
 import itemData from './Items';
-
 
 const CommonInput = ({ title, addItem }) => {
     const { enqueueSnackbar } = useSnackbar();
@@ -16,6 +14,7 @@ const CommonInput = ({ title, addItem }) => {
     const [itemProteins, setItemProteins] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('Breakfast'); // Default category
+    const [isXSScreen, setIsXSScreen] = useState(false);
 
     const placeholder = title === 'water' ? 'Add items in ml' : 'Enter item in grams';
 
@@ -36,6 +35,7 @@ const CommonInput = ({ title, addItem }) => {
                 )
         );
     };
+
     const onSuggestionsClearRequested = () => {
         setSuggestions([]);
     };
@@ -58,13 +58,10 @@ const CommonInput = ({ title, addItem }) => {
             });
             if (response.status === 200) {
                 enqueueSnackbar('Item added successfully', { variant: 'success' });
-                //  addItem(selectedCategory.toLowerCase(), itemName.toLowerCase(), itemGrams, itemProteins);
-            }
-            else {
+            } else {
                 enqueueSnackbar('Error in adding item', { variant: 'error' });
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error);
             enqueueSnackbar('Error in adding item', { variant: 'error' });
         }
@@ -76,9 +73,28 @@ const CommonInput = ({ title, addItem }) => {
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
     };
+
+    useEffect(() => {
+        const handleResize = () => {
+            const screenWidth = window.innerWidth;
+            setIsXSScreen(screenWidth <= 1000);
+        };
+
+        // Initial call to set the `isXSScreen` state based on the screen width
+        handleResize();
+
+        // Add an event listener to update `isXSScreen` when the window is resized
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
-        <Row className="justify-content-md-center">
-            <Col md={8}>
+        <Row className={`justify-content-center ${isXSScreen ? 'common-input-xs' : ''}`}>
+            <Col lg={9} md={9}>
                 <div className='common-input' style={{
                     border: '2px solid white',
                     borderRadius: '25px',
@@ -86,7 +102,7 @@ const CommonInput = ({ title, addItem }) => {
                 }}>
                     <BootstrapForm className='ms-1'>
                         <Row className="mb-3">
-                            <Col md={12} className="text-center">
+                            <Col md={12} lg={12} className="text-center">
                                 <h1 className="fw-bold m-3" size="4">
                                     Log an item
                                 </h1>
@@ -94,59 +110,72 @@ const CommonInput = ({ title, addItem }) => {
                         </Row>
 
                         <Row className="mb-3 justify-content-center">
-                            <Col md={3} className="text-center mb-3">
-                                <BootstrapForm.Label className="size-4 fw-bold">Item Name:</BootstrapForm.Label>
-                                <Autosuggest
-                                    suggestions={suggestions}
-                                    onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                                    onSuggestionsClearRequested={onSuggestionsClearRequested}
-                                    getSuggestionValue={getSuggestionValue}
-                                    renderSuggestion={renderSuggestion}
-                                    inputProps={{
-                                        placeholder: 'Item name',
-                                        value: itemName,
-                                        onChange: (event, { newValue }) => setItemName(newValue),
-                                        className: 'form-control fw-bold',
-                                    }}
-                                    theme={{
-                                        container: 'autosuggest-container',
-                                        suggestionsContainer: 'suggestions-container',
-                                        suggestionsList: 'suggestions-list',
-                                    }}
-                                />
+                            {/* Item Name */}
+                            <Col md={3} xs={6} className="text-center mb-3" style={{ margin: '0 10px' }}>
+                                <div className="scroll-container">
+                                    <BootstrapForm.Label className="size-4 fw-bold">Item Name</BootstrapForm.Label>
+                                    <Autosuggest
+                                        suggestions={suggestions}
+                                        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                                        onSuggestionsClearRequested={onSuggestionsClearRequested}
+                                        getSuggestionValue={getSuggestionValue}
+                                        renderSuggestion={renderSuggestion}
+                                        inputProps={{
+                                            placeholder: 'Item name',
+                                            value: itemName,
+                                            onChange: (event, { newValue }) => setItemName(newValue),
+                                            className: 'form-control fw-bold',
+
+                                        }}
+                                        theme={{
+                                            container: 'autosuggest-container',
+                                            suggestionsContainer: 'suggestions-container',
+                                            suggestionsList: 'suggestions-list',
+                                        }}
+                                    />
+                                </div>
                             </Col>
-                            <Col md={3} className="text-center mb-3">
-                                <BootstrapForm.Label className="size-4 fw-bold">Grams(g)/Calories(kcal)/(ml)</BootstrapForm.Label>
-                                <BootstrapForm.Control
-                                    type="text"
-                                    placeholder='In grams/kcal/ml'
-                                    value={itemGrams}
-                                    className="form-control fw-bold"
-                                    onChange={(e) => setItemGrams(e.target.value)}
-                                />
+
+                            {/* Grams/Calories/Proteins */}
+                            <Col md={3} xs={6} className="text-center mb-3" style={{ margin: '0 10px' }}>
+                                <div className="scroll-container">
+                                    <BootstrapForm.Label className="size-3 fw-bold">Quantity</BootstrapForm.Label>
+                                    <BootstrapForm.Control
+                                        type="text"
+                                        placeholder='grams/kcal'
+                                        value={itemGrams}
+                                        className="form-control fw-bold max-width-200" // Add a custom class for styling
+                                        onChange={(e) => setItemGrams(e.target.value)}
+                                    />
+                                </div>
                             </Col>
-                            <Col md={3} className="text-center mb-3">
-                                <BootstrapForm.Label className="size-4 fw-bold">Proteins(g)</BootstrapForm.Label>
-                                <BootstrapForm.Control
-                                    type="text"
-                                    placeholder="Proteins in grams"
-                                    value={itemProteins}
-                                    className="form-control fw-bold"
-                                    onChange={(e) => setItemProteins(e.target.value)}
-                                />
+
+                            {/* Proteins */}
+                            <Col md={3} xs={6} className="text-center mb-3" style={{ margin: '0 10px' }}>
+                                <div className="scroll-container">
+                                    <BootstrapForm.Label className="size-4 fw-bold">Proteins(g)</BootstrapForm.Label>
+                                    <BootstrapForm.Control
+                                        type="text"
+                                        placeholder="Proteins in grams"
+                                        value={itemProteins}
+                                        className="form-control fw-bold"
+                                        onChange={(e) => setItemProteins(e.target.value)}
+
+                                    />
+                                </div>
                             </Col>
                         </Row>
 
                         <Row className="mb-3">
-                            <Col md={12} className="d-flex align-items-center justify-content-center mb-3">
+                            <Col md={12} className="text-center mb-3">
                                 {/* Toggle Button for selecting meal category */}
-                                <Row>
-                                    {['Breakfast', 'Lunch', 'Dinner', 'Snack1', 'Water'].map((category) => (
+                                <Row className="justify-content-center">
+                                    {['Breakfast', 'Lunch', 'Dinner', 'Snack'].map((category) => (
                                         <Col key={category} xs={6} md={2} className="mb-2">
                                             <Button
                                                 variant={selectedCategory === category ? 'success' : 'outline-dark'}
-                                                className="w-120 m-2  p-1"
-                                                style={{ borderRadius: '5px', border: '2px solid black' }}
+                                                className="w-150 m-2 p-1"
+                                                style={{ borderRadius: '5px', border: '2px solid black', backgroundColor: '#005c5c',color:'white' }}
                                                 onClick={() => handleCategoryChange(category)}
                                             >
                                                 {category}
@@ -155,6 +184,8 @@ const CommonInput = ({ title, addItem }) => {
                                     ))}
                                 </Row>
                             </Col>
+                        </Row>
+                        <Row className="mb-3">
                             <Col md={12} className="d-flex align-items-center justify-content-center">
                                 <Button variant="dark" onClick={handleAdd} className="bg-black text-white">
                                     Add
@@ -163,9 +194,6 @@ const CommonInput = ({ title, addItem }) => {
                         </Row>
                     </BootstrapForm>
                 </div>
-            </Col>
-            <Col md={4} className="d-flex align-items-center justify-content-left">
-                <WaterComp />
             </Col>
         </Row>
     );

@@ -16,7 +16,7 @@ const Login = () => {
         enqueueSnackbar('Please fill all the fields', { variant: 'error' });
         return;
       }
-      const response = await axios.get('http://localhost:8000/login', { params: formData });
+      const response = await axios.get('https://calorie-tracker-backend-cwwr.onrender.com/login', { params: formData });
       if (response.status === 200) {
         localStorage.setItem('mail', formData.email);
         console.log("Login successful");

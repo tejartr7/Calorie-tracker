@@ -18,7 +18,7 @@ const Register = () => {
     // console.log('Form submitted');
 
     try {
-      const response = await axios.post('http://localhost:8000/register', formData);
+      const response = await axios.post('https://calorie-tracker-backend-cwwr.onrender.com/register', formData);
       //console.log(response);
       if (response.status === 201) {
         enqueueSnackbar('Registration successful', { variant: 'success' });
@@ -96,7 +96,7 @@ const Register = () => {
                   style={{ border: '1px solid black', borderRadius: '5px', backgroundColor: '#e8f0fe' }}
                 />
               </Form.Group>
-              <Button variant="primary" className="bg-black" type="submit">
+              <Button variant="primary"  type="submit" style={{ backgroundColor: '#005c5c' }}>
                 Register
               </Button>
             </Form>

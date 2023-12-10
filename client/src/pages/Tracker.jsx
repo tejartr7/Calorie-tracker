@@ -35,7 +35,7 @@ const Tracker = () => {
                     ))}
                 </Row>
             </div>
-            <div className="m-4"> {/* Add margin-bottom to create space between the last row and the footer */}
+            <div className="mt-4">
                 <Footer />
             </div>
         </div>

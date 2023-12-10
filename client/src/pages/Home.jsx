@@ -39,9 +39,10 @@ const Home = () => {
               </div>
             </div>
             <div className="lc-block">
-              <Link className="btn btn-lg btn-success" to="/tracker" role="button">
+              <Link to="/tracker" className="btn btn-lg" style={{ backgroundColor: '#005c5c', color: 'white', textDecoration: 'none' }}>
                 Get it now-for Free
               </Link>
+
             </div>
           </div>
         </div>

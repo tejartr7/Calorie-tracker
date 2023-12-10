@@ -16,7 +16,7 @@ const calculateCaloriesAndProteins = (itemName, itemGrams, itemProteins) => {
     }
 
     // If itemProteins is defined, use its value; otherwise, use the value from the map
-    const proteins = (itemProteins>0)  ? parseInt(itemProteins) : itemGrams/100*calorieProteinInfo.proteins;
+    const proteins = (itemProteins > 0) ? parseInt(itemProteins) : itemGrams / 100 * calorieProteinInfo.proteins;
     const cal = (itemGrams / 100) * calorieProteinInfo.calories;
 
     return { cal, proteins };
@@ -25,9 +25,10 @@ const calculateCaloriesAndProteins = (itemName, itemGrams, itemProteins) => {
 addItem.post('/', async (req, res) => {
     try {
         const { email, title, itemName, itemGrams, itemProteins } = req.body;
-
+        console.log(req.body);
         // Validate required fields
         if (!email || !title || !itemName || itemGrams === undefined) {
+
             return res.status(400).json({ message: 'Invalid request. Please provide all required fields.' });
         }
 
@@ -35,13 +36,13 @@ addItem.post('/', async (req, res) => {
 
         if (!existingUser) {
             // If the user doesn't exist, create a new one
-            existingUser = new UserItems({ email, breakfast: [], lunch: [], dinner: [], snack1: [], snack2: [], water: [] });
+            existingUser = new UserItems({ email, breakfast: [], lunch: [], dinner: [], snack: [], water: [] });
         }
 
         // Calculate calories and proteins
         const { cal, proteins } = calculateCaloriesAndProteins(itemName, itemGrams, itemProteins);
         // Add item to the appropriate meal category
-        if (title === 'water' || title === 'breakfast' || title === 'lunch' || title === 'dinner' || title === 'snack1' || title === 'snack2') {
+        if (title === 'water' || title === 'breakfast' || title === 'lunch' || title === 'dinner' || title === 'snack') {
             const temp = existingUser[title].find((item) => item.itemName === itemName);
             //console.log("temp is " + " " + temp);
             if (temp === undefined) {
@@ -69,6 +70,7 @@ addItem.post('/', async (req, res) => {
             console.log(updatedUser);  // Log the updated user to check for changes
             return res.status(200).json({ message: 'Item added successfully', user: updatedUser });
         } else {
+            console.log("error here ");
             return res.status(400).json({ message: 'Invalid title' });
         }
     } catch (error) {

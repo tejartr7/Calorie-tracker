@@ -249,6 +249,44 @@ const itemData = [
         "name": "cereal",
     },{
         "name": "granola",
+    },{
+        "name": "nuggest",
+    },{
+        "name": "chicken wings",
+    },{
+        "name": "chicken tenders",
+    },{
+        "name": "chicken nuggets",
+    },{
+        "name": "chicken drumsticks",
+    },{
+        "name": "chicken thighs",
+    },{
+        "name": "chicken breast",
+    },{
+        "name": "chicken legs",
+    },{
+        "name": "chicken roast",
+    },{
+        "name": "chicken curry",
+    },{
+        "name": "chicken biryani",
+    },{
+        "name": "chicken tikka",
+    },{
+        "name": "chicken korma",
+    },{
+        "name": "chicken butter masala",
+    },{
+        "name": "chicken lollipop",
+    },{
+        "name": "chicken soup",
+    },{
+        "name": "chicken salad",
+    },{
+        "name": "chicken sandwich",
+    },{
+        "name": "chicken burger",
     }
 ];
 export default itemData;

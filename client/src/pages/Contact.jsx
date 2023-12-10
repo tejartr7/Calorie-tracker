@@ -108,13 +108,7 @@ const Contact = () => {
           <div className="mb-3 row">
             <div className="col">
               <label>Mail us at</label>
-              <p className='fw-bold' ><a style={{ color: 'black' }} href="mailto:codworldrtr7@gmail.com">codworldrtr7@gmail.com 📧</a></p>
-            </div>
-          </div>
-          <div className="mb-3 row">
-            <div className="col">
-              <label>Follow us on Twitter</label>
-              <p className='fw-bold' style={{ color: 'black' }}><a style={{ color: 'black' }} href="https://twitter.com/raghu_rtr" target="_blank" rel="noopener noreferrer">raghu_rtr  </a></p>
+              <p className='fw-bold' ><a style={{ color: 'black' }} href="mailto:trackercalorie88@gmail.com">trackercalorie88@gmail.com 📧</a></p>
             </div>
           </div>
         </div>

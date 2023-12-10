@@ -8,79 +8,7 @@ import Autosuggest from 'react-autosuggest'; // Import Autosuggest
 // Import your CSS file with the suggested styles
 
 const Form = ({ title, token }) => {
-  const itemData =
-    // Your item data here
-    [
-      {
-        "name": "panner",
-      },
-      {
-        "name": "rice",
-      },
-      {
-        "name": "dal",
-      },
-      {
-        "name": "roti",
-      },
-      {
-        "name": "chicken",
-      },
-      {
-        "name": "potato",
-      },
-      {
-        "name": "bread",
-      },
-      {
-        "name": "egg",
-      },
-      {
-        "name": "milk",
-      },
-      {
-        "name": "banana",
-      },
-      {
-        "name": "apple",
-      },
-      {
-        "name": "orange",
-      },
-      {
-        "name": "carrot",
-      },
-      {
-        "name": "broccoli",
-      },
-      {
-        "name": "lettuce",
-      },
-      {
-        "name": "tomato",
-      },
-      {
-        "name": "cucumber",
-      },
-      {
-        "name": "onion",
-      },
-      {
-        "name": "garlic",
-      },
-      {
-        "name": "ginger",
-      },
-      {
-        "name": "mushroom",
-      }
-      , {
-        "name": "fish",
-      },
-      {
-        "name": "curd",
-      }
-    ];
+  
 
   const [itemName, setItemName] = useState('');
   const [itemGrams, setItemGrams] = useState('');
@@ -98,24 +26,10 @@ const Form = ({ title, token }) => {
     </div>
   );
 
-  const onSuggestionsFetchRequested = ({ value }) => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-    setSuggestions(
-      inputLength === 0
-        ? []
-        : itemData.filter((item) =>
-          item.name.toLowerCase().includes(inputValue)
-        )
-    );
+  
 
-  };
 
-  const onSuggestionsClearRequested = () => {
-    setSuggestions([]);
-  };
-
-  const getSuggestionValue = (suggestion) => suggestion.name;
+  //const getSuggestionValue = (suggestion) => suggestion.name;
 
   const handleAdd = async () => {
     const mail = localStorage.getItem('mail');
@@ -127,7 +41,7 @@ const Form = ({ title, token }) => {
       if (itemProteins === '') {
         setItemProteins('');
       }
-      const response = await axios.post('http://localhost:8000/add', {
+      const response = await axios.post('https://calorie-tracker-backend-cwwr.onrender.com/add', {
         email: mail,
         title: title.toLowerCase(),
         itemName: itemName.toLowerCase(),

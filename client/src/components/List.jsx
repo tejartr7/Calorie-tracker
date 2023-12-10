@@ -10,7 +10,7 @@ const List = ({ title }) => {
    
     const fetchItems = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/items/${email}/${title}`);
+            const response = await fetch(`https://calorie-tracker-backend-cwwr.onrender.com/items/${email}/${title}`);
             if (response.status === 200) {
                 const data = await response.json();
 
@@ -42,7 +42,7 @@ const List = ({ title }) => {
 
     const handleDelete = async (itemName, itemGrams) => {
         try {
-            const response = await fetch(`http://localhost:8000/delete/`, {
+            const response = await fetch(`https://calorie-tracker-backend-cwwr.onrender.com/delete/`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

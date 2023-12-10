@@ -105,6 +105,25 @@ calorieProteinMap.set('spaghetti', { calories: 157, proteins: 5});
 calorieProteinMap.set('lasagna', { calories: 157, proteins: 5});
 calorieProteinMap.set('cereal', { calories: 379, proteins: 8});
 calorieProteinMap.set('granola', { calories: 489, proteins: 10});
+calorieProteinMap.set('nuggest', { calories: 287, proteins: 14});
+calorieProteinMap.set('chicken wings', { calories: 290, proteins: 17});
+calorieProteinMap.set('chicken tenders', { calories: 290, proteins: 17});
+calorieProteinMap.set('chicken nuggets', { calories: 287, proteins: 14});
+calorieProteinMap.set('chicken drumsticks', { calories: 290, proteins: 17});
+calorieProteinMap.set('chicken thighs', { calories: 290, proteins: 17});
+calorieProteinMap.set('chicken breast', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken legs', { calories: 290, proteins: 17});
+calorieProteinMap.set('chicken roast', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken curry', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken biryani', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken tikka', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken korma', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken butter masala', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken lollipop', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken soup', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken salad', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken sandwich', { calories: 165, proteins: 31});
+calorieProteinMap.set('chicken burger', { calories: 165, proteins: 31});
 
 // Add more items
 
