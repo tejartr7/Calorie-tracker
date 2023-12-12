@@ -49,7 +49,7 @@ const CommonInput = ({ title, addItem }) => {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:8000/add', {
+            const response = await axios.post('https://calorie-tracker-backend-cwwr.onrender.com/add', {
                 email: mail,
                 title: selectedCategory.toLowerCase(),
                 itemName: itemName.toLowerCase(),
