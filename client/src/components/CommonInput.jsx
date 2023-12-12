@@ -166,32 +166,32 @@ const CommonInput = ({ title, addItem }) => {
                             </Col>
                         </Row>
 
-                        <Row className="mb-3">
-                            <Col md={12} className="text-center mb-3">
-                                {/* Toggle Button for selecting meal category */}
-                                <Row className="justify-content-center">
-                                    {['Breakfast', 'Lunch', 'Dinner', 'Snack'].map((category) => (
-                                        <Col key={category} xs={6} md={2} className="mb-2">
-                                            <Button
-                                                variant={selectedCategory === category ? 'success' : 'outline-dark'}
-                                                className="w-150 m-2 p-1"
-                                                style={{ borderRadius: '5px', border: '2px solid black', backgroundColor: '#005c5c',color:'white' }}
-                                                onClick={() => handleCategoryChange(category)}
-                                            >
-                                                {category}
-                                            </Button>
-                                        </Col>
-                                    ))}
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row className="mb-3">
-                            <Col md={12} className="d-flex align-items-center justify-content-center">
-                                <Button variant="dark" onClick={handleAdd} className="bg-black text-white">
-                                    Add
-                                </Button>
-                            </Col>
-                        </Row>
+                       <Row className="mb-3">
+    <Col md={12} className="text-center mb-3">
+        {/* Toggle Button for selecting meal category */}
+        <Row className="justify-content-center">
+            {['Breakfast', 'Lunch', 'Dinner', 'Snack'].map((category) => (
+                <Col key={category} xs={6} md={2} className="mb-2">
+                    <Button
+                        style={{ backgroundColor: selectedCategory === category ? '#28a745' : '#005c5c', borderColor: 'black', color: 'white' }}
+                        className="w-150 m-2 p-1"
+                        onClick={() => handleCategoryChange(category)}
+                    >
+                        {category}
+                    </Button>
+                </Col>
+            ))}
+        </Row>
+    </Col>
+</Row>
+
+<Row className="mb-3">
+    <Col md={12} className="d-flex align-items-center justify-content-center">
+        <Button variant="dark" onClick={handleAdd} className="bg-black text-white">
+            Add
+        </Button>
+    </Col>
+</Row>
                     </BootstrapForm>
                 </div>
             </Col>
