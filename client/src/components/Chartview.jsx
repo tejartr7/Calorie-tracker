@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pie } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip } from 'chart.js';
-
+import { useSnackbar } from 'notistack';
 const Chartview = ({ title }) => {
     Chart.register(ArcElement);
     Chart.register(Tooltip);
     const email = localStorage.getItem('mail');
     const [chartData, setChartData] = useState(null);
-
+    const { enqueueSnackbar } = useSnackbar();
     useEffect(() => {
         fetchItems();
     }, []);
