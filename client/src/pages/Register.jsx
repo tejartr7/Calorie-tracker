@@ -58,7 +58,7 @@ const Register = () => {
                   name="username"
                   value={formData.username}
                   onChange={handleInputChange}
-                  placeholder="Enter your username"
+                  placeholder="Should be unique"
                   style={{ border: '1px solid black', borderRadius: '5px', backgroundColor: '#e8f0fe' }}
                 />
               </Form.Group>
@@ -69,7 +69,7 @@ const Register = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="Enter your email"
+                  placeholder="Should be unique"
                   style={{ border: '1px solid black', borderRadius: '5px', backgroundColor: '#e8f0fe' }}
                 />
               </Form.Group>
